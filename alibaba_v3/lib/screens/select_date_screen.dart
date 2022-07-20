@@ -10,11 +10,10 @@ class SelectScreen extends StatefulWidget {
 }
 
 class _SelectScreenState extends State<SelectScreen> {
-  int topItemIndex = 0;
+  int topItemIndex = 1;
   @override
   void initState() {
     super.initState();
-    setState(() {});
   }
 
   @override
@@ -23,19 +22,9 @@ class _SelectScreenState extends State<SelectScreen> {
       backgroundColor: Colors.grey[500],
       body: Column(
         children: [
-          ElevatedButton(
-              onPressed: () {
-                print('Elevated: $topItemIndex');
-              },
-              child: Text('')),
           Stack(
             children: [
               Container(height: 150, color: Colors.red),
-              ElevatedButton(
-                  onPressed: () {
-                    print('Elevated: $topItemIndex');
-                  },
-                  child: Text('')),
               Padding(
                 padding: EdgeInsets.only(top: 110, right: 15, left: 15),
                 child: Row(

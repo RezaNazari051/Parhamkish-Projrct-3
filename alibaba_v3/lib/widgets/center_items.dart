@@ -4,8 +4,8 @@ import 'package:alibaba_v3/widgets/text_field.dart';
 import 'package:flutter/material.dart';
 
 class CenterItems extends StatefulWidget {
-  CenterItems({Key? key, required this.selectedIndex}) : super(key: key);
-  int? selectedIndex;
+  const CenterItems({Key? key, required this.selectedIndex}) : super(key: key);
+  final selectedIndex;
   @override
   State<CenterItems> createState() => _CenterItemsState();
 }
@@ -16,41 +16,30 @@ class _CenterItemsState extends State<CenterItems> {
   @override
   void initState() {
     super.initState();
-    selectedIndex = widget.selectedIndex;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Padding(
-        padding:
-            const EdgeInsets.only(top: 15, right: 15, left: 15, bottom: 180),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          height: 30,
-          child: Column(
-            children: [
-              ElevatedButton(
-                  onPressed: () {
-                    print('final  $selectedIndex');
-                  },
-                  child: Text('')),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SwitchButton(),
-              ),
-              TextFields(text: 'مبدا', icon: Icons.location_on_outlined),
-              TextFields(text: 'مقصد', icon: Icons.location_on_outlined),
-              TextFields(
-                  text: 'تاریخ رفت', icon: Icons.calendar_month_outlined),
-              ListTileNumberOfPassengers(
-                index: selectedIndex!,
-              )
-            ],
-          ),
+    return Padding(
+      padding: const EdgeInsets.only(top: 15, right: 15, left: 15, bottom: 15),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SwitchButton(),
+            ),
+            TextFields(text: 'مبدا', icon: Icons.location_on_outlined),
+            TextFields(text: 'مقصد', icon: Icons.location_on_outlined),
+            TextFields(text: 'تاریخ رفت', icon: Icons.calendar_month_outlined),
+            ListTileNumberOfPassengers(
+              index: widget.selectedIndex,
+            )
+          ],
         ),
       ),
     );
