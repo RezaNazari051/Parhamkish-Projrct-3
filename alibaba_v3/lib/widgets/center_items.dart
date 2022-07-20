@@ -1,5 +1,4 @@
 import 'package:alibaba_v3/widgets/list_tile.dart';
-import 'package:alibaba_v3/widgets/switch_buttons_in_center_item.dart';
 import 'package:alibaba_v3/widgets/round_trip_buttons.dart';
 import 'package:alibaba_v3/widgets/text_field.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +22,7 @@ class _CenterItemsState extends State<CenterItems> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 15, right: 15, left: 15, bottom: 15),
+      padding: const EdgeInsets.all(15),
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -44,7 +43,7 @@ class _CenterItemsState extends State<CenterItems> {
                     ontap: () {
                       setState(() {
                         switchButtonIndex = 1;
-                        print(switchButtonIndex.toString());
+                        //  print(switchButtonIndex.toString());
                       });
                     },
                     index: 1,
@@ -55,7 +54,7 @@ class _CenterItemsState extends State<CenterItems> {
                     ontap: () {
                       setState(() {
                         switchButtonIndex = 2;
-                        print(switchButtonIndex.toString());
+                        // print(switchButtonIndex.toString());
                       });
                     },
                     index: 2,
@@ -72,7 +71,22 @@ class _CenterItemsState extends State<CenterItems> {
                 icon: Icons.calendar_month_outlined),
             ListTileNumberOfPassengers(
               index: widget.selectedIndex,
-            )
+            ),
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.grey[900],
+                  ),
+                  onPressed: () {},
+                  child: Text('جستجو'),
+                ),
+              ),
+            ),
+            SizedBox(height: 15)
           ],
         ),
       ),
