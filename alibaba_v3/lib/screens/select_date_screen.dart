@@ -34,7 +34,7 @@ class _SelectScreenState extends State<SelectScreen> {
                         setState(() {
                           topItemIndex = 1;
                         });
-                        print('test : $topItemIndex');
+                        // print('test : $topItemIndex');
                       },
                       index: topItemIndex,
                       title: 'پرواز داخلی',
@@ -48,7 +48,7 @@ class _SelectScreenState extends State<SelectScreen> {
                         setState(() {
                           topItemIndex = 2;
                         });
-                        print('test : $topItemIndex');
+                        // print('test : $topItemIndex');
                       },
                       index: topItemIndex,
                       title: 'پرواز خارجی',

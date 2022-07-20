@@ -1,5 +1,6 @@
 import 'package:alibaba_v3/widgets/list_tile.dart';
 import 'package:alibaba_v3/widgets/switch_buttons_in_center_item.dart';
+import 'package:alibaba_v3/widgets/round_trip_buttons.dart';
 import 'package:alibaba_v3/widgets/text_field.dart';
 import 'package:flutter/material.dart';
 
@@ -11,8 +12,9 @@ class CenterItems extends StatefulWidget {
 }
 
 class _CenterItemsState extends State<CenterItems> {
-  int swwitchButtonIndex = 1;
-  int? selectedIndex;
+  int? selectedIndex = 2;
+  //int switchButtonIndex = 1;
+  int switchButtonIndex = 1;
   @override
   void initState() {
     super.initState();
@@ -31,11 +33,43 @@ class _CenterItemsState extends State<CenterItems> {
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: SwitchButton(),
+              //switch buttons
+              // child: SwitchButton(
+              //   selectedIndex: switchButtonIndex,
+              // ),
+              child: Row(
+                children: [
+                  RoundTripButtons(
+                    text: 'رفت',
+                    ontap: () {
+                      setState(() {
+                        switchButtonIndex = 1;
+                        print(switchButtonIndex.toString());
+                      });
+                    },
+                    index: 1,
+                    selectedIndex: switchButtonIndex,
+                  ),
+                  RoundTripButtons(
+                    text: 'برگشت',
+                    ontap: () {
+                      setState(() {
+                        switchButtonIndex = 2;
+                        print(switchButtonIndex.toString());
+                      });
+                    },
+                    index: 2,
+                    selectedIndex: switchButtonIndex,
+                  ),
+                ],
+              ),
             ),
             TextFields(text: 'مبدا', icon: Icons.location_on_outlined),
             TextFields(text: 'مقصد', icon: Icons.location_on_outlined),
-            TextFields(text: 'تاریخ رفت', icon: Icons.calendar_month_outlined),
+            TextFields(
+                text:
+                    switchButtonIndex == 1 ? 'تاریخ رفت' : 'تاریخ رفت و برگشت',
+                icon: Icons.calendar_month_outlined),
             ListTileNumberOfPassengers(
               index: widget.selectedIndex,
             )

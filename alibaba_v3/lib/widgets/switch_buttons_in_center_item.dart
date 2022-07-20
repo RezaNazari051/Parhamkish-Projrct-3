@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 
 class SwitchButton extends StatefulWidget {
-  SwitchButton({
-    Key? key,
-  }) : super(key: key);
+  SwitchButton({Key? key, required this.selectedIndex}) : super(key: key);
 
-  int selectedIndex = 1;
+  int selectedIndex;
 
   @override
   State<SwitchButton> createState() => _SwitchButtonState();
 }
 
 class _SwitchButtonState extends State<SwitchButton> {
-  int selectedIndex = 1;
-
+  int? selectedIndex;
+  int index1 = 0;
   @override
   void initState() {
     super.initState();
@@ -34,24 +32,28 @@ class _SwitchButtonState extends State<SwitchButton> {
       child: OutlinedButton(
         style: OutlinedButton.styleFrom(
             side: BorderSide(
-              color: selectedIndex == index ? Colors.red : Colors.grey.shade300,
+              color: widget.selectedIndex == index
+                  ? Colors.red
+                  : Colors.grey.shade300,
             ),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
             backgroundColor:
-                selectedIndex == index ? Colors.red : Colors.white),
+                widget.selectedIndex == index ? Colors.red : Colors.white),
         onPressed: () {
+          print('${widget.selectedIndex} index = :$index');
           setState(
             () {
-              selectedIndex = index;
+              widget.selectedIndex = index;
             },
           );
         },
         child: Text(
           text,
           style: TextStyle(
-            color: selectedIndex == index ? Colors.white : Colors.grey[600],
+            color:
+                widget.selectedIndex == index ? Colors.white : Colors.grey[600],
           ),
         ),
       ),
