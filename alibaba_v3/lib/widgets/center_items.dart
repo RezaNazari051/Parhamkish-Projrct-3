@@ -50,7 +50,7 @@ class _CenterItemsState extends State<CenterItems> {
                     selectedIndex: switchButtonIndex,
                   ),
                   RoundTripButtons(
-                    text: 'برگشت',
+                    text: 'رفت و برگشت',
                     ontap: () {
                       setState(() {
                         switchButtonIndex = 2;
