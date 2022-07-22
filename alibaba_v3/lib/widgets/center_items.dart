@@ -63,12 +63,21 @@ class _CenterItemsState extends State<CenterItems> {
                 ],
               ),
             ),
-            TextFields(text: 'مبدا', icon: Icons.location_on_outlined),
-            TextFields(text: 'مقصد', icon: Icons.location_on_outlined),
             TextFields(
-                text:
-                    switchButtonIndex == 1 ? 'تاریخ رفت' : 'تاریخ رفت و برگشت',
-                icon: Icons.calendar_month_outlined),
+              text: 'مبدا',
+              icon: Icons.location_on_outlined,
+              index: 1,
+            ),
+            TextFields(
+              text: 'مقصد',
+              icon: Icons.location_on_outlined,
+              index: 2,
+            ),
+            TextFields(
+              text: switchButtonIndex == 1 ? 'تاریخ رفت' : 'تاریخ رفت و برگشت',
+              icon: Icons.calendar_month_outlined,
+              index: 3,
+            ),
             ListTileNumberOfPassengers(
               index: widget.selectedIndex,
             ),

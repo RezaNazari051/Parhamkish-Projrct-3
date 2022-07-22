@@ -31,21 +31,21 @@ class _RoundTripButtons extends State<RoundTripButtons> {
         style: OutlinedButton.styleFrom(
             side: BorderSide(
               color: widget.selectedIndex == widget.index
-                  ? Colors.red
+                  ? Colors.yellow.shade700
                   : Colors.grey.shade300,
             ),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
             backgroundColor: widget.selectedIndex == widget.index
-                ? Colors.red
+                ? Colors.yellow.shade700
                 : Colors.white),
         onPressed: widget.ontap,
         child: Text(
           widget.text!,
           style: TextStyle(
             color: widget.selectedIndex == widget.index
-                ? Colors.white
+                ? Colors.black
                 : Colors.grey[600],
           ),
         ),

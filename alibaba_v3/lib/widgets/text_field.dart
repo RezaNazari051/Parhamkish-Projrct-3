@@ -1,50 +1,72 @@
+import 'package:alibaba_v3/screens/cities_list.dart';
 import 'package:flutter/material.dart';
 
-class TextFields extends StatelessWidget {
-  TextFields({Key? key, required this.text, required this.icon})
+class TextFields extends StatefulWidget {
+  TextFields(
+      {Key? key, required this.text, required this.icon, required this.index})
       : super(key: key);
+  final String text;
+  final IconData icon;
+  final int index;
+
+  @override
+  State<TextFields> createState() => _TextFieldsState();
+}
+
+class _TextFieldsState extends State<TextFields> {
   final Color greyColor = Color(0xffEEEEEE);
-  String? text;
-  IconData? icon;
+  String? result;
+
   @override
   Widget build(BuildContext context) {
-    return _getTextField(text: text!, icon: icon!, underlineColor: greyColor);
+    return _getTextField(
+        text: widget.text, icon: widget.icon, underlineColor: greyColor);
   }
 
   Widget _getTextField(
       {required String text,
       required IconData icon,
       required Color underlineColor}) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      child: Directionality(
-        textDirection: TextDirection.rtl,
-        child: TextField(
-          showCursor: false,
-          keyboardType: TextInputType.none,
-          readOnly: true,
-          decoration: InputDecoration(
-            enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: greyColor),
-            ),
-            focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(
-                color: greyColor,
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 5.0),
+          child: ListTile(
+              subtitle: Visibility(
+                  visible: result != null ? true : false,
+                  child: Text(result ?? '')),
+              title: Text(
+                text,
+                style: TextStyle(
+                  color: Colors.grey[600],
+                  fontSize: 18,
+                ),
               ),
-            ),
-            hintText: text,
-            prefixIcon: Padding(
-              padding: const EdgeInsets.only(left: 20),
-              child: Icon(
-                icon,
-                size: 30,
-                color: Colors.grey[400],
-              ),
-            ),
-            hintStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              leading: Icon(icon),
+              onTap: () async {
+                print(widget.index);
+                result = await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CitiesListScreen(
+                            indexScreen: widget.index,
+                          )),
+                );
+                setState(() {
+                  result;
+                });
+                print('Text :$result');
+              }),
+        ),
+        SizedBox(
+          height: 5,
+          child: Divider(
+            thickness: 0.75,
+            indent: 20,
+            endIndent: 20,
           ),
         ),
-      ),
+      ],
     );
   }
 }
