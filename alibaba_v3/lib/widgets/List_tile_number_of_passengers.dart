@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:alibaba_v3/widgets/bottom_sheet.dart';
+import 'package:alibaba_v3/widgets/add_and_remove_button.dart';
 import 'package:flutter/material.dart';
 
 class ListTileNumberOfPassengers extends StatefulWidget {
@@ -75,17 +75,12 @@ class _ListTileNumberOfPassengersState
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10.0),
-                          child: const Text(
-                            'نوع و تعداد مسافران',
-                            style: TextStyle(fontSize: 16),
-                          ),
-                        ),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10.0),
+                      child: const Text(
+                        'نوع و تعداد مسافران',
+                        style: TextStyle(fontSize: 16),
+                      ),
                     ),
                     Divider(
                       indent: 20,
@@ -137,6 +132,7 @@ class _ListTileNumberOfPassengersState
                             }
                           },
                         ),
+                        _getDescription('بزرگسال', '12 سال به بالا', 'man')
                       ],
                     ),
                     Row(
@@ -181,6 +177,7 @@ class _ListTileNumberOfPassengersState
                             });
                           },
                         ),
+                        _getDescription('کودک', '2 سال تا 12 سال', 'boy')
                       ],
                     ),
                     Row(
@@ -225,6 +222,7 @@ class _ListTileNumberOfPassengersState
                             });
                           },
                         ),
+                        _getDescription('کودک', '10 روز تا 2 سال', 'baby')
                       ],
                     ),
                     Container(
@@ -255,5 +253,37 @@ class _ListTileNumberOfPassengersState
 
   TextStyle countTextStyle() {
     return TextStyle(fontSize: 18, color: Colors.black);
+  }
+
+  Widget _getDescription(String title, String description, String image) {
+    return Expanded(
+      child: Directionality(
+        textDirection: TextDirection.rtl,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Container(
+                margin: EdgeInsets.all(5),
+                padding: EdgeInsets.all(5),
+                width: 50,
+                height: 50,
+                child: Image(image: AssetImage('images/$image.png'))),
+            Container(
+              width: 60,
+              child: Text(
+                title,
+                style: countTextStyle(),
+              ),
+            ),
+            Expanded(
+              child: Container(
+                margin: EdgeInsets.only(right: 10),
+                child: Text(description),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

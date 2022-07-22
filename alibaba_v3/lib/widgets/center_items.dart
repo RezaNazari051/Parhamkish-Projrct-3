@@ -1,4 +1,5 @@
-import 'package:alibaba_v3/widgets/list_tile.dart';
+import 'package:alibaba_v3/widgets/List_tile_number_of_passengers.dart';
+import 'package:alibaba_v3/widgets/list_tile_select_date.dart';
 import 'package:alibaba_v3/widgets/round_trip_buttons.dart';
 import 'package:alibaba_v3/widgets/text_field.dart';
 import 'package:flutter/material.dart';
@@ -41,14 +42,17 @@ class _CenterItemsState extends State<CenterItems> {
                   RoundTripButtons(
                     text: 'رفت',
                     ontap: () {
-                      setState(() {
-                        switchButtonIndex = 1;
-                        //  print(switchButtonIndex.toString());
-                      });
+                      setState(
+                        () {
+                          switchButtonIndex = 1;
+                          //  print(switchButtonIndex.toString());
+                        },
+                      );
                     },
                     index: 1,
                     selectedIndex: switchButtonIndex,
                   ),
+                  SizedBox(width: 20),
                   RoundTripButtons(
                     text: 'رفت و برگشت',
                     ontap: () {
@@ -68,15 +72,38 @@ class _CenterItemsState extends State<CenterItems> {
               icon: Icons.location_on_outlined,
               index: 1,
             ),
+            SizedBox(
+              height: 5,
+              child: Divider(
+                thickness: 0.75,
+                indent: 20,
+                endIndent: 20,
+              ),
+            ),
             TextFields(
               text: 'مقصد',
               icon: Icons.location_on_outlined,
               index: 2,
             ),
-            TextFields(
+            SizedBox(
+              height: 5,
+              child: Divider(
+                thickness: 0.75,
+                indent: 20,
+                endIndent: 20,
+              ),
+            ),
+            ListTileSelectDateScreen(
               text: switchButtonIndex == 1 ? 'تاریخ رفت' : 'تاریخ رفت و برگشت',
               icon: Icons.calendar_month_outlined,
-              index: 3,
+            ),
+            SizedBox(
+              height: 5,
+              child: Divider(
+                thickness: 0.75,
+                indent: 20,
+                endIndent: 20,
+              ),
             ),
             ListTileNumberOfPassengers(
               index: widget.selectedIndex,

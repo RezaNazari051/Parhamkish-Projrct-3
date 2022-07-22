@@ -11,7 +11,6 @@ class _CitiesListScreenState extends State<CitiesListScreen> {
   @override
   Widget build(BuildContext context) {
     String? selectedText;
-    int indexScreen;
 
     List<String> citiesList = [
       'تهران',

@@ -2,14 +2,14 @@ import 'package:alibaba_v3/widgets/center_items.dart';
 import 'package:alibaba_v3/widgets/top_items.dart';
 import 'package:flutter/material.dart';
 
-class SelectScreen extends StatefulWidget {
-  SelectScreen({Key? key}) : super(key: key);
+class FlightSelectionScreen extends StatefulWidget {
+  FlightSelectionScreen({Key? key}) : super(key: key);
 
   @override
-  State<SelectScreen> createState() => _SelectScreenState();
+  State<FlightSelectionScreen> createState() => _FlightSelectionScreenState();
 }
 
-class _SelectScreenState extends State<SelectScreen> {
+class _FlightSelectionScreenState extends State<FlightSelectionScreen> {
   int topItemIndex = 1;
   @override
   void initState() {

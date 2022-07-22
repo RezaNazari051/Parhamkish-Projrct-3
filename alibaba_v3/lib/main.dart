@@ -1,4 +1,4 @@
-import 'package:alibaba_v3/screens/select_date_screen.dart';
+import 'package:alibaba_v3/screens/flight_selection_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +15,7 @@ class Application extends StatelessWidget {
       theme: ThemeData(fontFamily: 'IranSansMedium'),
       debugShowCheckedModeBanner: false,
       home: Directionality(
-          textDirection: TextDirection.rtl, child: SelectScreen()),
+          textDirection: TextDirection.rtl, child: FlightSelectionScreen()),
     );
   }
 }

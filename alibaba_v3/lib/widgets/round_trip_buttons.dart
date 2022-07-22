@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class RoundTripButtons extends StatefulWidget {
-  RoundTripButtons(
+  const RoundTripButtons(
       {Key? key,
       required this.index,
       required this.text,
@@ -9,10 +9,10 @@ class RoundTripButtons extends StatefulWidget {
       required this.selectedIndex})
       : super(key: key);
 
-  int? index;
-  String? text;
-  Function()? ontap;
-  int? selectedIndex;
+  final int? index;
+  final String? text;
+  final Function()? ontap;
+  final int? selectedIndex;
 
   @override
   State<RoundTripButtons> createState() => _RoundTripButtons();
