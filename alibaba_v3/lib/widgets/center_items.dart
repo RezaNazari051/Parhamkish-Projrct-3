@@ -115,8 +115,9 @@ class _CenterItemsState extends State<CenterItems> {
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.grey[900],
-                  ),
+                      primary: Colors.grey[900],
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10))),
                   onPressed: () {},
                   child: Text('جستجو'),
                 ),

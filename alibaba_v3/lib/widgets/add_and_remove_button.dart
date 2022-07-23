@@ -21,12 +21,6 @@ class _AddAndRomoveButtonState extends State<AddAndRomoveButton> {
 
   @override
   Widget build(BuildContext context) {
-    // return Row(
-    //   children: [
-    //     getButtons(icon: Icons.add, index: 1, onPressed: widget.onPressed),
-    //     getButtons(icon: Icons.remove, index: 2, onPressed: widget.onPressed),
-    //   ],
-    // );
     return SizedBox(
       child: ElevatedButton(
           style: ElevatedButton.styleFrom(

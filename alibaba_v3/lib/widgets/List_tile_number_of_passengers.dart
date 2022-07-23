@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:alibaba_v3/widgets/add_and_remove_button.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +19,8 @@ class _ListTileNumberOfPassengersState
 
   int addAndRemoveButtonIndex = 0;
 
+  int selectedvalue = 1;
+
   late bool isZero;
   @override
   void initState() {
@@ -38,26 +38,32 @@ class _ListTileNumberOfPassengersState
       ),
       title: Text(
         widget.index == 1 ? 'نوع و تعداد مسافران' : 'نوع مسافران و کلاس پروازی',
-        style: TextStyle(color: Colors.grey[600]),
+        style: TextStyle(color: Colors.grey[600], fontSize: 14),
       ),
-      subtitle: Row(
-        children: [
-          Expanded(
+      subtitle: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 5.0),
+        child: Row(
+          children: [
+            Expanded(
               child: Text(
-            'بزرگسال: $adultNumbers',
-            style: countTextStyle(),
-          )),
-          Expanded(
+                'بزرگسال: $adultNumbers',
+                style: countTextStyle(),
+              ),
+            ),
+            Expanded(
               child: Text(
-            'کودک: $kidNumbers',
-            style: countTextStyle(),
-          )),
-          Expanded(
+                'کودک: $kidNumbers',
+                style: countTextStyle(),
+              ),
+            ),
+            Expanded(
               child: Text(
-            'نوزاد: $babyNumbers',
-            style: countTextStyle(),
-          )),
-        ],
+                'نوزاد: $babyNumbers',
+                style: countTextStyle(),
+              ),
+            ),
+          ],
+        ),
       ),
       onTap: () {
         print('listTile : ${widget.index}');
@@ -225,6 +231,70 @@ class _ListTileNumberOfPassengersState
                         _getDescription('کودک', '10 روز تا 2 سال', 'baby')
                       ],
                     ),
+                    Visibility(
+                      visible: widget.index == 1 ? false : true,
+                      child: Directionality(
+                        textDirection: TextDirection.rtl,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 30,
+                              child: RadioListTile<int>(
+                                title: Text('اکونومی کلاس'),
+                                groupValue: selectedvalue,
+                                value: 1,
+                                onChanged: (value) {
+                                  setter(() => selectedvalue = 1);
+                                },
+                              ),
+                            ),
+                            Container(
+                              height: 30,
+                              child: RadioListTile<int>(
+                                title: Text('فرست کلاس'),
+                                groupValue: selectedvalue,
+                                value: 2,
+                                onChanged: (value) {
+                                  setter(() => selectedvalue = 2);
+                                },
+                              ),
+                            ),
+                            Container(
+                              height: 30,
+                              child: RadioListTile<int>(
+                                title: Text('بیزنس کلاس'),
+                                groupValue: selectedvalue,
+                                value: 3,
+                                onChanged: (value) {
+                                  setter(() => selectedvalue = 3);
+                                },
+                              ),
+                            ),
+                            // Radio(
+
+                            //     value: 1,
+                            //     groupValue: selectedvalue,
+                            //     onChanged: (value) {
+                            //       setter(() => selectedvalue = 1);
+                            //     }),
+                            // Radio(
+                            //     value: 2,
+                            //     groupValue: selectedvalue,
+                            //     onChanged: (value) {
+                            //       setter(() => selectedvalue = 2);
+                            //     }),
+
+                            // Radio(
+                            //     value: 3,
+                            //     groupValue: selectedvalue,
+                            //     onChanged: (value) {
+                            //       setter(() => selectedvalue = 3);
+                            //     }),
+                          ],
+                        ),
+                      ),
+                    ),
                     Container(
                       margin: EdgeInsets.only(top: 30, bottom: 20),
                       padding: EdgeInsets.symmetric(horizontal: 20),
@@ -237,7 +307,9 @@ class _ListTileNumberOfPassengersState
                           ),
                           primary: Colors.grey[900],
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
                         child: Text('تایید'),
                       ),
                     ),
@@ -252,7 +324,7 @@ class _ListTileNumberOfPassengersState
   }
 
   TextStyle countTextStyle() {
-    return TextStyle(fontSize: 18, color: Colors.black);
+    return TextStyle(fontSize: 16, color: Colors.black);
   }
 
   Widget _getDescription(String title, String description, String image) {
@@ -264,9 +336,9 @@ class _ListTileNumberOfPassengersState
           children: [
             Container(
                 margin: EdgeInsets.all(5),
-                padding: EdgeInsets.all(5),
-                width: 50,
-                height: 50,
+                padding: EdgeInsets.symmetric(horizontal: 5),
+                width: 45,
+                height: 40,
                 child: Image(image: AssetImage('images/$image.png'))),
             Container(
               width: 60,
