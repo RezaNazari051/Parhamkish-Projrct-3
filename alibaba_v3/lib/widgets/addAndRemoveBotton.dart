@@ -35,12 +35,12 @@ class _AddAndRomeveButtonState extends State<AddAndRomeveButton> {
         break;
       case 2:
         title = 'کودک';
-        decoration = '12 سال به بالا';
+        decoration = '2 سال تا 12 سال';
         image = 'boy';
         break;
       case 3:
         title = 'نوزاد';
-        decoration = '12 سال به بالا';
+        decoration = '10 روز تا 2 سال';
         image = 'baby';
         break;
       default:
@@ -92,7 +92,10 @@ class _AddAndRomeveButtonState extends State<AddAndRomeveButton> {
             ),
           ),
           Expanded(
-            child: Text(decoration ?? ''),
+            child: Text(
+              decoration ?? '',
+              style: TextStyle(fontSize: 14, color: Colors.grey[500]),
+            ),
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -123,4 +126,12 @@ class _AddAndRomeveButtonState extends State<AddAndRomeveButton> {
       ),
     );
   }
+
+  // bool qualifyForFlight(BuildContext context) {
+  //   final provider = context.read<Alibaba>();
+  //   if (provider.adultCount + provider.kidCount + provider.babyCount <= 9)
+  //     return true;
+  //   else
+  //     return false;
+  // }
 }

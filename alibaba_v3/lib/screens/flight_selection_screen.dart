@@ -36,7 +36,7 @@ class _FlightSelectionScreenState extends State<FlightSelectionScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Center(
-                          child: Text(
+                          child: const Text(
                             'پرواز',
                             style: TextStyle(fontSize: 18),
                           ),
@@ -55,8 +55,8 @@ class _FlightSelectionScreenState extends State<FlightSelectionScreen> {
                         index: topItemIndex,
                         title: 'پرواز داخلی',
                         borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(20),
-                          bottomRight: Radius.circular(20),
+                          topRight: const Radius.circular(20),
+                          bottomRight: const Radius.circular(20),
                         ),
                       ),
                       TopItems(
@@ -68,8 +68,8 @@ class _FlightSelectionScreenState extends State<FlightSelectionScreen> {
                         index: topItemIndex,
                         title: 'پرواز خارجی',
                         borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(20),
-                            bottomLeft: Radius.circular(20)),
+                            topLeft: const Radius.circular(20),
+                            bottomLeft: const Radius.circular(20)),
                       ),
                     ],
                   ),

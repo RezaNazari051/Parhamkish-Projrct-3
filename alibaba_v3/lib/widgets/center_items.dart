@@ -1,8 +1,12 @@
+import 'package:alibaba_v3/provider/alibaba.dart';
+import 'package:alibaba_v3/screens/showListOfFlights.dart';
 import 'package:alibaba_v3/widgets/listTileOpenBottomSheet.dart';
 import 'package:alibaba_v3/widgets/list_tile_select_date.dart';
 import 'package:alibaba_v3/widgets/round_trip_buttons.dart';
 import 'package:alibaba_v3/widgets/text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
 
 class CenterItems extends StatefulWidget {
   const CenterItems({Key? key, required this.selectedIndex}) : super(key: key);
@@ -52,7 +56,7 @@ class _CenterItemsState extends State<CenterItems> {
                     index: 1,
                     selectedIndex: switchButtonIndex,
                   ),
-                  SizedBox(width: 20),
+                  const SizedBox(width: 20),
                   RoundTripButtons(
                     text: 'رفت و برگشت',
                     ontap: () {
@@ -74,7 +78,7 @@ class _CenterItemsState extends State<CenterItems> {
               icon: Icons.location_on_outlined,
               index: 1,
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
               child: Divider(
                 thickness: 0.75,
@@ -87,7 +91,7 @@ class _CenterItemsState extends State<CenterItems> {
               icon: Icons.location_on_outlined,
               index: 2,
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
               child: Divider(
                 thickness: 0.75,
@@ -96,12 +100,12 @@ class _CenterItemsState extends State<CenterItems> {
               ),
             ),
             ListTileSelectDateScreen(
-              text: switchButtonIndex == 1 ? 'تاریخ رفت' : 'تاریخ رفت و برگشت',
-              icon: Icons.calendar_month_outlined,
-            ),
-            SizedBox(
+                // text: switchButtonIndex == 1 ? 'تاریخ رفت' : 'تاریخ رفت و برگشت',
+                // icon: Icons.calendar_month_outlined,
+                ),
+            const SizedBox(
               height: 5,
-              child: Divider(
+              child: const Divider(
                 thickness: 0.75,
                 indent: 20,
                 endIndent: 20,
@@ -123,8 +127,29 @@ class _CenterItemsState extends State<CenterItems> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  onPressed: () {},
-                  child: Text('جستجو'),
+                  onPressed: () {
+                    final provider = context.read<Alibaba>();
+                    if (provider.fromCity != null &&
+                        provider.toCity != null &&
+                        provider.dateTime != null) {
+                      print('ok');
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ShowListOfFlightsScreen(),
+                        ),
+                      );
+                    } else {
+                      // Toast.show('لطفا تمام مقادیر را چک کنید',
+                      //     duration: 2, gravity: 2);
+                      Fluttertoast.showToast(
+                          msg: 'لطفا مقادیر ورودی را چک کنید',
+                          textColor: Colors.black,
+                          fontSize: 18,
+                          backgroundColor: Colors.yellow[700]);
+                    }
+                  },
+                  child: const Text('جستجو'),
                 ),
               ),
             ),

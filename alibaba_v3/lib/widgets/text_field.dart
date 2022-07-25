@@ -17,7 +17,7 @@ class TextFields extends StatefulWidget {
 
 class _TextFieldsState extends State<TextFields> {
   DateTime date = DateTime.now();
-
+  int? index;
   String? result;
 
   @override
@@ -47,6 +47,7 @@ class _TextFieldsState extends State<TextFields> {
         ),
         leading: Icon(widget.icon),
         onTap: () async {
+          context.read<Alibaba>().setIndex(widget.index);
           await Navigator.push(
             context,
             MaterialPageRoute(

@@ -44,10 +44,10 @@ class _RoundTripButtons extends State<RoundTripButtons> {
         child: Text(
           widget.text!,
           style: TextStyle(
-            color: widget.selectedIndex == widget.index
-                ? Colors.black
-                : Colors.grey[600],
-          ),
+              color: widget.selectedIndex == widget.index
+                  ? Colors.black
+                  : Colors.grey[600],
+              fontWeight: FontWeight.w100),
         ),
       ),
     );
