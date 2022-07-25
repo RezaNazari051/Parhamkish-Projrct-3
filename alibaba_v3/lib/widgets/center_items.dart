@@ -56,10 +56,12 @@ class _CenterItemsState extends State<CenterItems> {
                   RoundTripButtons(
                     text: 'رفت و برگشت',
                     ontap: () {
-                      setState(() {
-                        switchButtonIndex = 2;
-                        // print(switchButtonIndex.toString());
-                      });
+                      setState(
+                        () {
+                          switchButtonIndex = 2;
+                          // print(switchButtonIndex.toString());
+                        },
+                      );
                     },
                     index: 2,
                     selectedIndex: switchButtonIndex,
@@ -116,9 +118,11 @@ class _CenterItemsState extends State<CenterItems> {
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      primary: Colors.grey[900],
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10))),
+                    primary: Colors.grey[900],
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
                   onPressed: () {},
                   child: Text('جستجو'),
                 ),

@@ -65,7 +65,7 @@ class ListTileOpenBottomSheet extends StatelessWidget {
             ),
             // Consumer<Alibaba>(builder: builder)
             Consumer<Alibaba>(
-              builder: (context, value, child) {
+              builder: (_, value, __) {
                 return AddAndRomeveButton(
                   index: 1,
                   addFun: () {
@@ -79,7 +79,7 @@ class ListTileOpenBottomSheet extends StatelessWidget {
               },
             ),
             Consumer<Alibaba>(
-              builder: (context, value, child) {
+              builder: (__, value, _) {
                 return AddAndRomeveButton(
                   index: 2,
                   addFun: () {
@@ -92,7 +92,7 @@ class ListTileOpenBottomSheet extends StatelessWidget {
               },
             ),
             Consumer<Alibaba>(
-              builder: (context, value, child) {
+              builder: (_, value, __) {
                 return AddAndRomeveButton(
                   index: 3,
                   addFun: () {
@@ -105,7 +105,7 @@ class ListTileOpenBottomSheet extends StatelessWidget {
               },
             ),
             Consumer<Alibaba>(
-              builder: (context, val, child) {
+              builder: (_, val, __) {
                 return Visibility(
                   visible: val.typeOfFlightClass,
                   child: Directionality(
@@ -113,30 +113,42 @@ class ListTileOpenBottomSheet extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        RadioListTile<int>(
-                          title: Text('اکونومی کلاس'),
-                          groupValue: val.selectedvalue,
-                          value: val.selectedvalue,
-                          onChanged: (value) {
-                            setCountProvider.setSelectedvalue(1);
+                        Consumer<Alibaba>(
+                          builder: (_, radio1, __) {
+                            return RadioListTile<int>(
+                              title: Text('اکونومی کلاس'),
+                              groupValue: radio1.selectedvalue,
+                              value: radio1.selectedvalue,
+                              onChanged: (value) {
+                                setCountProvider.setSelectedvalue(1);
+                              },
+                            );
                           },
                         ),
-                        RadioListTile<int>(
-                          title: Text('فرست کلاس'),
-                          groupValue: val.selectedvalue,
-                          value: val.selectedvalue,
-                          onChanged: (value) {
-                            setCountProvider.setSelectedvalue(2);
+                        Consumer<Alibaba>(
+                          builder: (_, radio2, __) {
+                            return RadioListTile<int>(
+                              title: Text('فرست کلاس'),
+                              groupValue: radio2.selectedvalue,
+                              value: radio2.selectedvalue,
+                              onChanged: (value) {
+                                setCountProvider.setSelectedvalue(2);
+                              },
+                            );
                           },
                         ),
-                        RadioListTile<int>(
-                          title: Text('بیزنس کلاس'),
-                          groupValue: val.selectedvalue,
-                          value: val.selectedvalue,
-                          onChanged: (value) {
-                            setCountProvider.setSelectedvalue(3);
+                        Consumer<Alibaba>(
+                          builder: (_, radio3, __) {
+                            return RadioListTile<int>(
+                              title: Text('بیزنس کلاس'),
+                              groupValue: radio3.selectedvalue,
+                              value: radio3.selectedvalue,
+                              onChanged: (value) {
+                                radio3.setSelectedvalue(3);
+                              },
+                            );
                           },
-                        ),
+                        )
                       ],
                     ),
                   ),
