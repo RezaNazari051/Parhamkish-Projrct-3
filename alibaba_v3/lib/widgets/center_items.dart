@@ -1,4 +1,4 @@
-import 'package:alibaba_v3/widgets/List_tile_number_of_passengers.dart';
+import 'package:alibaba_v3/widgets/listTileOpenBottomSheet.dart';
 import 'package:alibaba_v3/widgets/list_tile_select_date.dart';
 import 'package:alibaba_v3/widgets/round_trip_buttons.dart';
 import 'package:alibaba_v3/widgets/text_field.dart';
@@ -32,7 +32,7 @@ class _CenterItemsState extends State<CenterItems> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.only(top: 10.0, right: 15, left: 15),
               //switch buttons
               // child: SwitchButton(
               //   selectedIndex: switchButtonIndex,
@@ -105,9 +105,10 @@ class _CenterItemsState extends State<CenterItems> {
                 endIndent: 20,
               ),
             ),
-            ListTileNumberOfPassengers(
-              index: widget.selectedIndex,
-            ),
+            // ListTileNumberOfPassengers(
+            //   index: widget.selectedIndex,
+            // ),
+            ListTileOpenBottomSheet(),
             SizedBox(
               width: double.infinity,
               height: 50,

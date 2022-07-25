@@ -1,6 +1,8 @@
+import 'package:alibaba_v3/provider/alibaba.dart';
 import 'package:alibaba_v3/widgets/center_items.dart';
 import 'package:alibaba_v3/widgets/top_items.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class FlightSelectionScreen extends StatefulWidget {
   FlightSelectionScreen({Key? key}) : super(key: key);
@@ -18,8 +20,10 @@ class _FlightSelectionScreenState extends State<FlightSelectionScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final setProvider = context.read<Alibaba>();
+
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.grey[200],
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -31,9 +35,11 @@ class _FlightSelectionScreenState extends State<FlightSelectionScreen> {
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          'پرواز',
-                          style: TextStyle(fontSize: 18),
+                        Center(
+                          child: Text(
+                            'پرواز',
+                            style: TextStyle(fontSize: 18),
+                          ),
                         ),
                       ]),
                 ),
@@ -43,9 +49,7 @@ class _FlightSelectionScreenState extends State<FlightSelectionScreen> {
                     children: [
                       TopItems(
                         ontap: () {
-                          setState(() {
-                            topItemIndex = 1;
-                          });
+                          setProvider.setTypeOfFlightClas(false);
                           // print('test : $topItemIndex');
                         },
                         index: topItemIndex,
@@ -57,9 +61,8 @@ class _FlightSelectionScreenState extends State<FlightSelectionScreen> {
                       ),
                       TopItems(
                         ontap: () {
-                          setState(() {
-                            topItemIndex = 2;
-                          });
+                          setProvider.setTypeOfFlightClas(true);
+
                           // print('test : $topItemIndex');
                         },
                         index: topItemIndex,

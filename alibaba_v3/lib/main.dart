@@ -1,9 +1,22 @@
+import 'package:alibaba_v3/provider/alibaba.dart';
 import 'package:alibaba_v3/screens/flight_selection_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
 
 void main(List<String> args) {
-  runApp(Application());
+  runApp(
+    MultiProvider(
+      providers: [
+        // Provider<Alibaba>(create: (_) => Alibaba()),
+        ChangeNotifierProvider(
+          create: (_) => Alibaba(),
+        )
+      ],
+      child: Application(),
+    ),
+  );
 }
 
 class Application extends StatelessWidget {
@@ -11,11 +24,26 @@ class Application extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+          statusBarIconBrightness: Brightness.dark),
+    );
+
     return MaterialApp(
-      theme: ThemeData(fontFamily: 'IranSansMedium'),
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [
+        Locale('fa', ''), // English, no country code
+      ],
+      theme: ThemeData(
+        fontFamily: 'IranSansMedium',
+      ),
       debugShowCheckedModeBanner: false,
-      home: Directionality(
-          textDirection: TextDirection.rtl, child: FlightSelectionScreen()),
+      home: FlightSelectionScreen(),
     );
   }
 }

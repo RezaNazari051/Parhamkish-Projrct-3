@@ -1,8 +1,11 @@
+import 'package:alibaba_v3/provider/alibaba.dart';
+import 'package:alibaba_v3/screens/flight_selection_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CitiesListScreen extends StatefulWidget {
-  CitiesListScreen({Key? key, required this.indexScreen}) : super(key: key);
-  int indexScreen;
+  CitiesListScreen({Key? key}) : super(key: key);
+
   @override
   State<CitiesListScreen> createState() => _CitiesListScreenState();
 }
@@ -10,8 +13,10 @@ class CitiesListScreen extends StatefulWidget {
 class _CitiesListScreenState extends State<CitiesListScreen> {
   @override
   Widget build(BuildContext context) {
-    String? selectedText;
-
+    final myConroller = TextEditingController();
+    //String? selectedText;
+    final provider = context.read<Alibaba>();
+    int indexScreen = provider.index ?? 1;
     List<String> citiesList = [
       'تهران',
       'مشهد',
@@ -34,7 +39,7 @@ class _CitiesListScreenState extends State<CitiesListScreen> {
       appBar: AppBar(
         foregroundColor: Colors.black,
         title: Text(
-          widget.indexScreen == 1 ? 'انتخاب مبدا' : 'انتخاب مقصد',
+          provider.index == 1 ? 'انتخاب مبدا' : 'انتخاب مقصد',
           style: TextStyle(color: Colors.black),
         ),
         centerTitle: true,
@@ -49,6 +54,7 @@ class _CitiesListScreenState extends State<CitiesListScreen> {
               child: Directionality(
                 textDirection: TextDirection.rtl,
                 child: TextField(
+                  controller: myConroller,
                   decoration: InputDecoration(
                     suffixIcon: Icon(
                       Icons.search,
@@ -92,9 +98,42 @@ class _CitiesListScreenState extends State<CitiesListScreen> {
                       children: [
                         ListTile(
                           onTap: () {
-                            selectedText = citiesList[index];
-                            setState(() {});
-                            Navigator.of(context).pop(selectedText);
+                            // selectedText = citiesList[index];
+                            print(indexScreen);
+                            // provider.setIndex(widget.indexScreen);
+
+                            // if (widget.indexScreen == 1) {
+
+                            // }
+                            if (indexScreen == 1) {
+                              provider.setFromCity(citiesList[index]);
+                              provider.setIndex(indexScreen++);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: ((context) {
+                                    return CitiesListScreen();
+                                  }),
+                                ),
+                              );
+                              provider.setIndex(indexScreen++);
+                            } else if (indexScreen == 2) {
+                              provider.setToCity(citiesList[index]);
+                              Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: ((context) =>
+                                        FlightSelectionScreen()),
+                                  ),
+                                  (route) => false);
+                            }
+
+                            // else if (widget.indexScreen == 1) {
+                            //   provider.setToCity(citiesList[index]);
+                            //   selectedText = citiesList[index];
+                            // }
+
+                            // final provider =  Provider.of(context, listen: true);
                           },
                           leading: Icon(Icons.location_on_outlined),
                           title: Text(citiesList[index],
